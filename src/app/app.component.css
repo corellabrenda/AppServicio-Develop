@@ -1,0 +1,19 @@
+.contieneColab {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.tablaColab {
+    display: flex;
+    flex-grow: 1;
+}
+
+.columnaColab {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 0;
+    background-color: aquamarine;
+    border-color: black;
+}

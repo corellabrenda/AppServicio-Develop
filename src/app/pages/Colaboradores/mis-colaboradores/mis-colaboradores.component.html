@@ -1,0 +1,109 @@
+<div class="container mt-5"> 
+	<h1>Mis Colaboradores</h1>
+	
+
+	<table class="mat-elevation-z8 table table-hover">
+	<thead class="thead-light">
+		<tr>
+		<th *ngFor="let disp of displayedColumns"  scope="col">{{disp}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let colaborador of colaboradores" >
+		<th scope="row">{{colaborador.nombre}}</th>
+		<td>{{colaborador.rango}}</td>
+		<td>{{colaborador.salarioSprint}}</td>
+		<td>{{colaborador.salarioHExtra}}</td>
+		<td>{{colaborador.velocidad}}</td>
+		<td><button class="btn btn-warning" (click)="updateOpcion(colaborador)">Ir</button></td>
+		<td><button class="btn btn-danger" (click)="delete(colaborador.idColaborador)">Ir</button></td>
+		</tr>
+	</tbody>
+	</table>
+
+
+	<br><br><br>
+	
+
+		<form  #f="ngForm" class="example-form" (ngSubmit)="onSubmit()" *ngIf="condition">
+
+			<h2>Nuevo Colaborador </h2><br>
+			<mat-form-field class="example-full-width">
+				<mat-label>Nombre</mat-label>
+				<input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="nuevo_colaborador.nombre" matInput type="text" required>
+			</mat-form-field><br>
+
+
+			<mat-form-field appearance="fill">
+			<mat-label>Rango</mat-label>
+			<mat-select name="rango" [(ngModel)]="nuevo_colaborador.rango" required>
+				<mat-option *ngFor="let r of rango" [value]="r">{{r}}</mat-option>
+			</mat-select>
+			</mat-form-field><br>
+
+			<mat-form-field class="example-full-width">
+				<mat-label>Salario Por Sprint</mat-label>
+				<input matInput type="number" name="salarioSprint" min="0" #salarioSprint="ngModel" [(ngModel)]="nuevo_colaborador.salarioSprint" required>
+			</mat-form-field><br>
+
+
+			<mat-form-field class="example-full-width">
+				<mat-label>Salario Por Punto de Historia Extra:</mat-label>
+				<input matInput type="number" name="salarioHExtra" min="0" #salarioHExtra="ngModel" [(ngModel)]="nuevo_colaborador.salarioHExtra" required>
+			</mat-form-field><br>
+
+			<mat-form-field class="example-full-width">
+				<mat-label>Velocidad</mat-label>
+				<input matInput type="number" name="velocidad" min="0.5" step="0.5" value ="0.5" #velocidad="ngModel" [(ngModel)]="nuevo_colaborador.velocidad" required>
+			</mat-form-field><br>
+
+			<button class="btn btn-success" type="submit" [disabled]="f.invalid" value="Enviar">Guardar</button>
+
+		<button  class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+
+		</form>
+
+	<br>
+	<button *ngIf="!condition2 && !condition" class="btn btn-success" (click)="agregaColaborador()">Agregar Colaborador</button><br>
+
+
+
+	<!-- Editar un Colaborador-->
+		<form  #f1="ngForm" class="example-form" (ngSubmit)="editarColaborador()" *ngIf="condition2">
+
+			<h2>Actualizando colaborador </h2><br>
+			<mat-form-field class="example-full-width">
+				<mat-label>Nombre</mat-label>
+				<input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="actualizar_colaborador.nombre" matInput type="text" required>
+			</mat-form-field><br>
+
+
+			<mat-form-field appearance="fill">
+			<mat-label>Rango</mat-label>
+			<mat-select name="rango" [(ngModel)]="actualizar_colaborador.rango" required>
+				<mat-option *ngFor="let r of rango" [value]="r">{{r}}</mat-option>
+			</mat-select>
+			</mat-form-field><br>
+
+			<mat-form-field class="example-full-width">
+				<mat-label>Salario Por Sprint</mat-label>
+				<input matInput type="number" min="0" name="salarioSprint" #salarioSprint="ngModel" [(ngModel)]="actualizar_colaborador.salarioSprint" required>
+			</mat-form-field><br>
+
+
+			<mat-form-field class="example-full-width">
+				<mat-label>Salario PH Extra:</mat-label>
+				<input matInput type="number" min="0" name="salarioHExtra" #salarioHExtra="ngModel" [(ngModel)]="actualizar_colaborador.salarioHExtra" required>
+			</mat-form-field><br>
+
+			<mat-form-field class="example-full-width">
+				<mat-label>Velocidad</mat-label>
+				<input matInput type="number" name="velocidad" min="0.5" step="0.5" value ="0.5" #velocidad="ngModel" [(ngModel)]="actualizar_colaborador.velocidad" required>
+			</mat-form-field><br>
+
+			<button class="btn btn-success" type="submit" value="Enviar" [disabled]="f1.invalid">Actualizar</button>
+
+		<button  class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+
+	</form>
+</div>

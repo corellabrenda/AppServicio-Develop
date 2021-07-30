@@ -1,0 +1,19 @@
+<div class="mt-5">
+  <h1 mat-dialog-title>Terminando Sprint {{sprint.numeroSprint}}</h1>
+  <p>Seleccione las Historias de Usuario que se terminaron en el Sprint.</p>
+  <mat-dialog-content> 
+    <form #f="ngForm" class="example-form" (ngSubmit)="terminar()" *ngFor="let hu of sprint.historias">
+      <div class="form-check">
+        <label class="form-check-label" for="HU{{hu.idHistoriaUsuario}}">
+          <input class="form-check-input" type="checkbox" id="HU{{hu.idHistoriaUsuario}}">HU-{{hu.numeroHu}}: {{hu.nombre}}
+        </label>
+      </div>
+    </form>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="btn btn-success" mat-button cdkFocusInitial (click)="terminar()">Terminar</button>
+    <button mat-button class="btn btn-dark" (click)="onNoClick()">Regresar</button><hr>
+  </mat-dialog-actions>
+</div>

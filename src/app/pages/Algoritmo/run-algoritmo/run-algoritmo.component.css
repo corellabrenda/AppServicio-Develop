@@ -1,0 +1,59 @@
+
+.horizontal-scroll-contenedor{
+      overflow-y: hidden; 
+      overflow-x: auto;
+      width: auto;
+      height: auto;
+      white-space: nowrap;
+}
+
+.plan{
+  background: #eee;
+  border-radius: 15px;
+
+}
+
+.alta{
+  background: #C26054;
+}
+
+.media{
+  background: #E97825;
+}
+
+.baja{
+  background: #E9B925;
+}
+
+.containerplan {
+  width: 100px; 
+  padding: 0;
+  max-width: 100%;
+  margin: 15px 10px 10px 20px;
+  display: inline-block;
+  vertical-align: top;     
+}
+
+
+.example-list {
+  border: solid 1px #ccc;
+  min-height: 60px;
+
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+
+.example-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  font-size: 12px;
+
+}

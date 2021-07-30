@@ -1,0 +1,10 @@
+<div class="container mt-5">
+    <br><h1 align="center">Paso 3. Plan de liberacion inicial</h1>
+    <h3 align="center" >Agregre los sprint que requiera y agregue las historias de usuarios a su BackLog</h3>
+    <img class="center" src="assets/Imagenes/notaciones.png" >
+    <app-plan-liberacion [edita]="true" [plan]="null" velocidadColaboradores="{{velocidadEquipo}}"></app-plan-liberacion>
+
+    <button class="btn btn-success" (click)="guardar()">Guardar cambios</button>
+
+    <button class="btn btn-secondary"  (click)="cancelar()">Cancelar</button>
+</div>

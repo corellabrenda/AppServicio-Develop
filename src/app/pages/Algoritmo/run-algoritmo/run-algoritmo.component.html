@@ -1,0 +1,55 @@
+<div class="mt-5">
+	<div *ngIf="opcionesLiberacion">
+		
+
+
+	<h2>Elige alguno de los planes recomendados</h2>	
+		<button type="button" class="btn btn-info" (click)="info()">Info</button>
+
+		<div *ngFor="let plan of opcionesLiberacion" class="plan">
+			<h4>Velocidad de los colaboradores {{vel}}</h4>
+			<div class="container" style="margin: 5px;">
+				
+					<label>{{plan.nombre}}<br>costo: {{plan.costo}}<br>estabilidad: {{plan.estabilidad}}
+						<br>valor de liberacion: {{plan.valorLiberacion}}
+					</label>
+				
+				
+				<div class="row">
+					<div class="col horizontal-scroll-contenedor">
+						<div class="containerplan" *ngFor="let sp of plan.sprints">
+
+							<label>
+							Sprint {{sp.numeroSprint}}<br>
+							PH: {{sp.velocidad}}
+							</label>
+	
+							<div class="example-list">
+								<div *ngFor="let item of sp.historias" id="{{sp.idSprint}}" class="example-box {{prioridadColor[item.prioridad-1]}}">
+
+									<label>
+										HU-{{item.numeroHu}}<br>PH: {{item.puntosHistoria}}
+									</label>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col" align="center">
+						<button class="btn btn-outline-success" (click)="elegir(plan)">Elegir Plan</button>
+					</div>
+					
+				</div>
+				
+			</div>
+
+
+		</div>
+
+	</div>
+</div>
+
+

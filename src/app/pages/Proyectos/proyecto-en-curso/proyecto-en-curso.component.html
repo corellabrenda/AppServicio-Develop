@@ -1,0 +1,66 @@
+<div class=" container mt-5">
+	<div *ngIf="todo">
+
+		<div *ngIf="proyecto"> 
+			<br>
+			<h1>{{proyecto?.nombre}}</h1>
+			
+			<div class="container">
+			<div class="row">
+				<div class="col">
+					<p>Descripción: {{proyecto?.descripcion}}</p>
+					<p>Fecha de inicio: {{proyecto?.fechaInicio}}</p>
+					<p>Fecha de entrega: {{proyecto?.fechaEntrega}}</p>
+					<p *ngIf="proyecto?.terminado">Terminado: Si</p>
+					<p *ngIf="!proyecto?.terminado">Terminado: No</p>
+					<p>Duración de cada Sprint: {{proyecto?.duracionSprint}} semanas</p>
+				</div>
+			</div>
+			</div>
+
+
+			<hr><br>
+
+			<app-panel-colaboradores [plan]="proyecto.planesLiberacion[0]" [colaboradoresEnPlan]="proyecto.planesLiberacion[0].colaboradores" [idPlan]="idPlan"></app-panel-colaboradores>
+
+			<hr><br>
+			<h2>Ejecución del Plan de Liberación actual</h2>
+			<p *ngIf="proyecto.planesLiberacion[0].pendiente" style="color:red;">*Se han realizado modificaciones de forma manual al plan, por lo que se recomienda buscar alternativas o guardar cambios.</p>
+			<app-plan-liberacion [edita]="false" [plan]="proyecto.planesLiberacion[0]" velocidadColaboradores="{{hijoColab?.veltotal}}" [proyTerm]="proyecto.terminado"></app-plan-liberacion>
+
+			<div>
+				<!--p *ngIf="!proyecto?.terminado">Sprint Actual: {{sprintActual}}</p-->
+				<button class="btn btn-primary" (click)="terminar()" *ngIf="!proyecto?.terminado">Terminar Sprint</button>
+				<br><br><br><br>
+			</div>
+
+
+			<div class="btn-group" role="group" aria-label="Basic example">
+
+				<button class="btn btn-success" (click)="guardar()" [disabled]="!proyecto.planesLiberacion[0].pendiente || proyecto.terminado">Confirmar</button>
+
+				<button class="btn btn-outline-dark" (click)="replanear()" [disabled]="!proyecto.planesLiberacion[0].pendiente || proyecto.terminado">Replanear</button>
+				<button class="bbtn btn-outline-info"  (click)="cancelar()">Regresar</button>
+			</div>
+
+
+		</div>
+
+	</div>
+
+
+	<div *ngIf="listo">
+		<app-run-algoritmo [opcionesLiberacion]="opcionesPlan"></app-run-algoritmo>
+	</div>
+
+
+	<div *ngIf="espera" align="center" style="margin: 10px;">
+		<p>Se está buscando la mejor replaneación para su proyecto, por favor no cierre esta página.</p><br>
+		<!--div class="preloader"></div-->
+		<p>{{value}}%</p>
+		<mat-progress-bar class="example-margin" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue"></mat-progress-bar>
+	</div>
+</div>
+
+
+	

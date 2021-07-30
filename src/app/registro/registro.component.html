@@ -1,0 +1,18 @@
+<div class="body"></div>
+		<div class="grad"></div>
+		<div class="header">
+			<div>Registro<span></span></div>
+		</div>
+		<br>
+		<div class="login">
+				<input type="text" placeholder="username" id="username" [(ngModel)]='usuario' ><br>
+				<input type="text" placeholder="Correo Electronico" id="correo" [(ngModel)]='correo'><br>
+				<input type="text" placeholder="Telefono" id="telfono" [(ngModel)]='telefono'><br>
+                <input type="text" placeholder="Password" id="pasword" [(ngModel)]='contrasena'><br>
+                <input type="text" placeholder="Nombre(s)" id="Nombre" [(ngModel)]='nombre'><br>
+                <input type="text" placeholder="Apellido Paterno" id="ap"[(ngModel)]='ap'><br>
+                <input type="text" placeholder="Apellido Materno" id="am" [(ngModel)]='am'><br>               
+                <input type="button" value="Registrar" (click)="Registrar()">
+                <input type="button" value="Cancelar" (click)="Cancelar()">
+                
+		</div>

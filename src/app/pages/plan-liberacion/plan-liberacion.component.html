@@ -1,0 +1,150 @@
+<!--br><h4>Plan de liberacion</h4-->
+
+<div class="mt-5">
+	<!-- BLOQUE DE UN PLAN DE LIBERACION INICIAL-->
+	<div *ngIf="edita; else curso">
+	<div cdkDropListGroup class="plan">
+		<div class="container" style="margin: 5px;">
+			<div class="row">
+
+			<div class="col-sm-9 horizontal-scroll-contenedor">
+
+					<div class="containerplan" *ngFor="let sp of sprints">
+						<label *ngIf="sp.velocidad>velocidadColaboradores; else menor" class="advertencia">Sprint {{sp.numeroSprint}}<br>PH: {{sp.velocidad}} / {{velocidadColaboradores}}</label>
+						<ng-template #menor>
+							<label>Sprint {{sp.numeroSprint}}<br>PH: {{sp.velocidad}} / {{velocidadColaboradores}} </label>
+						</ng-template>
+						<!--Revisar si conviene más el id o el número-->
+						<div cdkDropList id="{{sp.idSprint}}" [cdkDropListData]="sp.historias" class="example-list" (cdkDropListDropped)="drop($event)">
+
+							<div *ngFor="let item of sp.historias" class="example-box {{prioridadColor[item.prioridad-1]}}" cdkDrag (dblclick)="ActualizarHistoria_Inicial(item,sprints.indexOf(sp),sp.historias.indexOf(item))">
+								HU-{{item.numeroHu}}<br>{{item.puntosHistoria}} PH
+							</div>
+						</div>
+					</div>
+
+			</div>
+
+
+			<div class="col-sm-2">
+				<div class="containerBacklog">
+					<h2>BackLog</h2>
+					<div id="backlog" cdkDropList [cdkDropListData]="backlog" class="example-list" (cdkDropListDropped)="drop($event)">
+					<div *ngFor="let item of backlog" class="example-box {{prioridadColor[item.prioridad-1]}} " (dblclick)="ActualizarHistoria_Inicial(item,null,backlog.indexOf(item))" cdkDrag>
+						HU-{{item.numeroHu}}<br>{{item.puntosHistoria}} PH
+					</div>
+					</div><br><br>
+					<button type="button" class="btn btn-dark" (click)="CrearHistoriaDialog()">+</button>
+				</div>
+			</div>
+
+			</div>
+
+			<div class="row">
+			<div class="col-9" align="center">
+				<p>Sprints</p>
+				<button type="button" class="btn btn-dark" (click)="crearSprint()"  id="creaSprint"> + </button>
+				<button class="btn btn-blue" type="button" (click)="borrarSprint()" id="borraSprint" [disabled]="sprints.length<=0"> - </button>
+				<br>
+			</div>
+			<div class="col-3">
+				
+			</div>
+		
+			</div>
+
+
+		</div>
+	</div>
+	</div>
+	<!-- FIN DE BLOQUE DE UN PLAN DE LIBERACION INICIAL-->
+
+
+
+
+
+	<!-- BLOQUE DE UN PLAN DE LIBERACION EN CURSO-->
+	<ng-template #curso>
+	
+		<div cdkDropListGroup class="plan">
+			<div class="container-fluid" style="margin: 5px;">
+				<div class="row">
+
+					<div class="col-sm-9 horizontal-scroll-contenedor">
+						
+						<div class="containerplan" *ngFor="let sp of sprints">
+							<label *ngIf="sp.actual; else noactual">
+							<b *ngIf="sp.velocidad>velocidadColaboradores; else menor" class="advertencia">->Sprint {{sp.numeroSprint}}<br>PH: {{sp.velocidad}} / {{velocidadColaboradores}}</b>
+							<ng-template #menor>
+								<b>->Sprint {{sp.numeroSprint}}<br>PH: {{sp.velocidad}} /{{velocidadColaboradores}}</b>
+							</ng-template>
+							</label>
+							<ng-template #noactual>
+								<label *ngIf="sp.velocidad>velocidadColaboradores; else menor" class="advertencia">Sprint {{sp.numeroSprint}}<br>PH: {{sp.velocidad}} / {{velocidadColaboradores}}</label>
+								<ng-template #menor>
+									<label>Sprint {{sp.numeroSprint}}<br>PH: {{sp.velocidad}} / {{velocidadColaboradores}}</label>
+								</ng-template>
+							</ng-template>
+
+
+							<div cdkDropList id="{{sp.idSprint}}" [cdkDropListData]="sp.historias" class="example-list" (cdkDropListDropped)="drop($event)">
+								<div *ngFor="let item of sp.historias" id="{{sp.idSprint}}" class="example-box {{prioridadColor[item.prioridad-1]}} q{{prioridadColor[item.prioridad-1]}}{{item.terminada}}" cdkDrag> 
+
+
+									<div *ngIf="!sp.terminado && !sp.actual; else noClick" (dblclick)="ActualizarHistoria_Curso(item,sprints.indexOf(sp),sp.historias.indexOf(item))">
+										<h5>HU-{{item.numeroHu}}<br>PH: {{item.puntosHistoria}}</h5>
+									</div>
+
+									<ng-template #noClick>
+										<h5>HU-{{item.numeroHu}}<br>PH: {{item.puntosHistoria}}</h5>
+									</ng-template>
+
+
+									<input type="checkbox" *ngIf="sp.actual && Actua_Historia"  name="" [(ngModel)]="item.terminada" (change)="A_Q_historiasTerminadas(item)">
+								
+									
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+
+					<div class="col-sm-3">
+						<div class="containerBacklog">
+						<h3>BackLog</h3>
+						<div id="backlog" cdkDropList [cdkDropListData]="backlog" class="example-list" (cdkDropListDropped)="drop($event)">
+							<div *ngFor="let item of backlog" class="example-box {{prioridadColor[item.prioridad-1]}}" (dblclick)="ActualizarHistoria_Curso(item,null,backlog.indexOf(item))" cdkDrag>
+								HU-{{item.numeroHu}}<br>{{item.puntosHistoria}} PH
+							</div>
+						</div><br><br>
+						<button type="button" class="btn btn-dark" (click)="CrearHistoriaDialog_Curso()" [disabled]="proyTerm">+</button>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="row">
+					<div class="col-9" align="center">
+					<p>Sprints</p>
+					<button type="button" class="btn btn-dark" (click)="crearSprint()"  id="creaSprint" [disabled]="proyTerm"> + </button>
+					<button class="btn btn-blue" type="button" (click)="borrarSprint()" id="borraSprint" [disabled]="sprints[sprints.length-1].actual || proyTerm"> - </button>
+					<br>
+					</div>
+					<div class="col-3">
+					
+					</div>
+			
+				</div>
+
+			</div>
+
+
+		</div>
+	</ng-template>
+	<!-- FIN DE UN BLOQUE DE UN PLAN DE LIBERACION EN CURSO-->
+</div>
+
+

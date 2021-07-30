@@ -1,0 +1,31 @@
+
+
+table {
+  width: 100%;
+  border-radius: 1em;
+}
+.example-width {
+  display: flex;
+  border: white 20px solid;
+  width: 50%;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-section {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.example-margin {
+  margin: 0 10px;
+}

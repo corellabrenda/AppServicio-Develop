@@ -1,0 +1,16 @@
+<div class="col ms-4  mt-5">
+	<h1 align="center">Paso 2. Agregar a los nuevos colaboradores</h1><br>
+
+
+	<div style="width: 50% !important;">
+		<label>¿Que porcentaje de tiempo extra puede trabajar el equipo?</label>
+		<input style="width:100px"type="number" min="0" step="5" class="form-control" placeholder="%" [(ngModel)]="nuevoPlan.tiempoExtraPorcentaje">
+	</div><br><hr>
+
+
+	<app-panel-colaboradores></app-panel-colaboradores>
+
+	<button  class="btn btn-success" (click)="siguiente()">Siguiente</button>
+
+	<button class="btn btn-secondary"  (click)="cancelar()">Cancelar</button>
+</div>

@@ -1,0 +1,3 @@
+OnInit--->
+
+Docheck------> detecta cuando hay un cambio en general en el componente o el html

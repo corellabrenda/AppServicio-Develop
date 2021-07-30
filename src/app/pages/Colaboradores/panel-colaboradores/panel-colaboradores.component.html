@@ -1,0 +1,112 @@
+<div class="mt-5">
+  <!-- BLOQUE DE UNA CONFIGURACION INICIAL DE LOS COLABORADORES-->
+  <div *ngIf="planInicial; else planCurso">
+
+      <div cdkDropListGroup>
+
+        <div class="row">
+          <div class="col-sm-5">
+            <h3>Colaboradores Disponibles</h3>
+
+            <div class="example-container">
+            
+              <div cdkDropList id="disponibles" class="example-list" [cdkDropListData]="colaboradoresDisponibles" (cdkDropListDropped)="drop($event)">
+
+                <div  *ngFor="let colaborador of colaboradoresDisponibles" class="example-box" cdkDrag>
+                  <img src="assets/Imagenes/{{colaborador.rango}}.png" class="rounded float-left colaborador" alt="Responsive image">
+                  {{colaborador.nombre}}<br>${{colaborador.salarioSprint}} p/Sprint<br>${{colaborador.salarioHExtra}} p/PHExtra<br>Velocidad: {{colaborador.velocidad}} PH
+                </div>
+              </div>
+
+            </div>
+            
+          </div>
+
+          <div class="col-sm-5">
+            <h3>Colaboradores en el Plan</h3>
+
+            <div class="example-container">
+              
+              <div cdkDropList id="enPlan" class="example-list" [cdkDropListData]="colaboradoresEnPlan" (cdkDropListDropped)="drop($event)">
+                <div *ngFor="let colaborador2 of colaboradoresEnPlan" class="example-box" cdkDrag>
+                  <img src="assets/Imagenes/{{colaborador2.rango}}.png" class="rounded float-left colaborador" alt="Responsive image">
+                  {{colaborador2.nombre}}<br>${{colaborador2.salarioSprint}} p/Sprint<br>${{colaborador2.salarioHExtra}} p/PHExtra<br>Velocidad: {{colaborador2.velocidad}} PH
+                </div>
+              </div>
+              <p>Velocidad del equipo: {{veltotal}} PH</p>
+            </div>
+              
+          </div>
+          
+        </div>
+
+      </div>
+  </div>
+  <!-- .............................................................-->
+
+
+
+
+
+  <!-- BLOQUE DE UNA CONFIGURACION EN CURSO DE LOS COLABORADORES-->
+
+  <ng-template #planCurso>
+
+      <div cdkDropListGroup>
+
+        <div class="row">
+          <div class="col-sm-5">
+            <h3>Colaboradores Disponibles</h3>
+
+            <div class="example-container vertical-scroll-contenedor">
+            
+              <div cdkDropList id="disponibles" class="example-list" [cdkDropListData]="colaboradoresDisponibles" (cdkDropListDropped)="dropCurso($event)">
+
+                <div  *ngFor="let colaborador of colaboradoresDisponibles" class="example-box" cdkDrag>
+                  <img src="assets/Imagenes/{{colaborador.rango}}.png" class="rounded float-left colaborador" alt="Responsive image">
+                  {{colaborador.nombre}}<br>${{colaborador.salarioSprint}} p/Sprint<br>${{colaborador.salarioHExtra}} p/PHExtra<br>Velocidad: {{colaborador.velocidad}} PH
+                </div>
+              </div>
+
+            </div>
+            
+          </div>
+
+          <div class="col-sm-5">
+            <h3>Colaboradores en el Plan</h3>
+
+            <div class="example-container vertical-scroll-contenedor">
+              
+              <div cdkDropList id="enPlan" class="example-list" [cdkDropListData]="colaboradoresEnPlan" (cdkDropListDropped)="dropCurso($event)">
+                <div *ngFor="let colaborador2 of colaboradoresEnPlan" class="example-box" cdkDrag>
+                  <img src="assets/Imagenes/{{colaborador2.rango}}.png" class="rounded float-left colaborador" alt="Responsive image">
+                  {{colaborador2.nombre}}<br>${{colaborador2.salarioSprint}} p/Sprint<br>${{colaborador2.salarioHExtra}} p/PHExtra<br>Velocidad: {{colaborador2.velocidad}} PH
+                </div>
+              </div>
+              <p>Velocidad del equipo: {{veltotal}} PH</p>
+            </div>
+              
+          </div>
+          
+        </div>
+
+      </div>
+
+
+
+
+  </ng-template>
+
+  <!-- .............................................................-->
+</div>
+
+
+
+
+
+
+
+
+
+
+

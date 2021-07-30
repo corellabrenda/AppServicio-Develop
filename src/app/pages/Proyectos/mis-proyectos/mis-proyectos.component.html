@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <h1>Mis Proyectos</h1>
+  <p>Aqui te muestra tus proyectos para ir a ver uno en particular o crear uno</p>
+  <p>Nota: Todos los proyectos que contengan un * al final de su nombre contienen cambios que no han sido guardados o replaneados</p>
+  <!-- Tabla dinamica de acuerdo a un arreglo en el componente-->
+
+  <table class="mat-elevation-z8 table table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th *ngFor="let disp of displayedColumns"  scope="col">{{disp}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let proyecto of proyectos" >
+        <th scope="row">{{proyecto.nombre}} <b *ngIf="proyecto.planesLiberacion[0].pendiente">*</b></th>
+        <td>{{proyecto.fechaInicio}}</td>
+        <td>{{proyecto.fechaEntrega}}</td>
+        <td>{{proyecto.terminado}}</td>
+        <td>{{proyecto.duracionSprint}}</td>
+        <td><button class="btn btn-primary" (click)="ir(proyecto)">Ir</button></td>
+        <td><button class="btn btn-danger" (click)="borrar(proyecto)">Ir</button></td>
+        
+      </tr>
+    </tbody>
+  </table>
+
+  <br><br>
+  <button class="btn btn-success" (click)="redirigir()">Crear Proyecto</button>
+</div>
+
+

@@ -1,0 +1,37 @@
+<div class="container mt-5">
+  <br>
+  <h1 align="center">Paso 1. Creacion de los datos del Proyecto</h1><br>
+
+  <form #f="ngForm" class="example-full-width" (ngSubmit)="onSubmit()">
+        <mat-form-field class="example-form">
+          <mat-label>Nombre del proyecto</mat-label>
+            <input matInput type="text" name="nombre" #nombre="ngModel" [(ngModel)]="nuevoProyecto.nombre" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-form">
+          <mat-label>Descripcion</mat-label>
+          <textarea matInput placeholder="......" rows="3" name="descripcion" #descripcion="ngModel" [(ngModel)]="nuevoProyecto.descripcion" required></textarea>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha de Inicio</mat-label>
+          <input matInput [matDatepicker]="picker" name="fechaInicio" #fechaInicio="ngModel" [(ngModel)]="nuevoProyecto.fechaInicio" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        
+        <!-- <mat-form-field class="example-form">
+          <mat-label>Duracion de un sprint (semanas)</mat-label><br><br>
+          <input matInput type="number" value="1" name="duracionSprint" #duracionSprint="ngModel" [(ngModel)]="nuevoProyecto.duracionSprint" required>
+        </mat-form-field> -->
+
+        <br><br><br>
+
+      <button class="btn btn-success" type="submit" [disabled]="f.invalid">Siguiente</button>
+
+      <button  class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+
+  </form>
+</div>
